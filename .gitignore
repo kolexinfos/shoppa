@@ -1,0 +1,6 @@
+node_modules/
+www/build/
+platforms/
+plugins/
+misc/
+.DS_Store
