@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ionicBootstrap, Platform, Nav } from 'ionic-angular';
-import { StatusBar, Splashscreen } from 'ionic-native';
+import { StatusBar, Splashscreen, Push } from 'ionic-native';
 
 import { HomePage } from './pages/home/home';
 import { TutorialPage } from './pages/tutorial/tutorial'
@@ -45,7 +45,31 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
       Splashscreen.hide();
+      var push = Push.init({
+        android: {
+          senderID: "126468130105"
+        },
+        ios: {
+          alert: "true",
+          badge: true,
+          sound: 'false'
+        },
+        windows: {}
+      });
+
+      push.on('registration', (data) => {
+        console.log(data.registrationId);
+        alert(data.registrationId.toString());
+      });
+      push.on('notification', (data) => {
+        console.log(data);
+        alert("Hi, Am a push notification");
+      });
+      push.on('error', (e) => {
+        console.log(e.message);
+      });
     });
+
   }
 }
 

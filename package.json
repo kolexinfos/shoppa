@@ -14,7 +14,15 @@
     "ionicons": "3.0.0",
     "reflect-metadata": "0.1.8",
     "rxjs": "5.0.0-beta.6",
-    "zone.js": "0.6.12"
+    "zone.js": "0.6.12",
+    "cordovaPlugins": [
+      {
+        "variables": {
+          "SENDER_ID": "XXXXXXXXXX"
+        },
+        "locator": "phonegap-plugin-push"
+      }
+    ]
   },
   "devDependencies": {
     "del": "2.2.0",
