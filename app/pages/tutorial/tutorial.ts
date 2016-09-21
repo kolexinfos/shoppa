@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 
-import { MenuController, NavController } from 'ionic-angular';
+import { MenuController, NavController, LocalStorage , Storage } from 'ionic-angular';
 
 import { HomePage } from '../home/home';
 import { SignupPage } from '../signup/signup';
+
+import { UserProvider } from '../../providers/user-provider/user-provider';
 
 
 
@@ -14,13 +16,15 @@ interface Slide {
 }
 
 @Component({
-  templateUrl: 'build/pages/tutorial/tutorial.html'
+  templateUrl: 'build/pages/tutorial/tutorial.html',
+  providers: [UserProvider]
 })
 export class TutorialPage {
   slides: Slide[];
   showSkip = true;
+  
 
-  constructor(public navCtrl: NavController, public menu: MenuController) {
+  constructor(public navCtrl: NavController, public menu: MenuController, private userProvider: UserProvider) {
     this.slides = [
       {
         title: 'Welcome to <b>Shoppa</b>',
@@ -57,11 +61,26 @@ export class TutorialPage {
   ionViewDidEnter() {
     // the root left menu should be disabled on the tutorial page
     this.menu.enable(false);
+    //this.userProvider.GetLocalUser();
   }
 
   ionViewWillLeave() {
     // enable the root left menu when leaving the tutorial page
     this.menu.enable(true);
+    
+  }
+  
+  ionViewWillEnter(){
+    console.log("ionViewWillEnter called");
+    
+    console.log(this.userProvider.LocalUser);
+    
+    if(this.userProvider.LocalUser != null)
+    {
+      this.navCtrl.setRoot(SignupPage); 
+      console.log(this.userProvider.LocalUser);
+    }
+    
   }
 
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
+import { MenuController, NavController, LocalStorage , Storage } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 
 /*
@@ -10,6 +11,9 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class UserProvider {
+
+ LocalUser:any;
+  
 
   constructor(private http: Http) {}
 
@@ -22,6 +26,15 @@ export class UserProvider {
 
     var response = this.http.post(url,userObject, options);
     return response;
+  }
+  
+  GetLocalUser(){
+   let response = new Storage(LocalStorage);
+   
+   response.get('user').then(function(user)
+   {
+     this.LocalUser = user; 
+   });
   }
 
 }

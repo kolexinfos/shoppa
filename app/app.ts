@@ -5,6 +5,8 @@ import { StatusBar, Splashscreen, Push } from 'ionic-native';
 import { HomePage } from './pages/home/home';
 import { TutorialPage } from './pages/tutorial/tutorial'
 
+import { UserProvider } from './providers/user-provider/user-provider';
+
 interface PageObj {
   title: string;
   component: any;
@@ -20,6 +22,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = TutorialPage;
+  
 
   pages : PageObj[] = [
     { title: 'Home', component: HomePage, icon: 'contacts' },
@@ -39,38 +42,44 @@ export class MyApp {
     { title: 'Signup', component: HomePage, icon: 'person-add' }
   ];
 
-  constructor(public platform: Platform) {
+  constructor(public platform: Platform, private userProvider: UserProvider) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
+      
+     
+      
       Splashscreen.hide();
-      var push = Push.init({
-        android: {
-          senderID: "126468130105"
-        },
-        ios: {
-          alert: "true",
-          badge: true,
-          sound: 'false'
-        },
-        windows: {}
-      });
+      
+      // var push = Push.init({
+      //   android: {
+      //     senderID: "126468130105"
+      //   },
+      //   ios: {
+      //     alert: "true",
+      //     badge: true,
+      //     sound: 'false'
+      //   },
+      //   windows: {}
+      // });
 
-      push.on('registration', (data) => {
-        console.log(data.registrationId);
-        alert(data.registrationId.toString());
-      });
-      push.on('notification', (data) => {
-        console.log(data);
-        alert("Hi, Am a push notification");
-      });
-      push.on('error', (e) => {
-        console.log(e.message);
-      });
+      // push.on('registration', (data) => {
+      //   console.log(data.registrationId);
+      //   alert(data.registrationId.toString());
+      // });
+      // push.on('notification', (data) => {
+      //   console.log(data);
+      //   alert("Hi, Am a push notification");
+      // });
+      // push.on('error', (e) => {
+      //   console.log(e.message);
+      // });
     });
 
   }
+  
+  
 }
 
-ionicBootstrap(MyApp);
+ionicBootstrap(MyApp, [UserProvider]);
