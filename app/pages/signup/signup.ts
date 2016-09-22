@@ -27,49 +27,40 @@ interface UserObj {
 
 
 export class SignupPage {
-
+  signup: {username?: string, password?: string, email?: string, phone?: string} = {};
   public message:any = '';
+  submitted = false;
 
-  constructor(private navCtrl: NavController,private userProvider: UserProvider) {
+  constructor(private navCtrl: NavController,private userProvider: UserProvider) { }
 
-  }
+    onSignup(form) {
+    this.submitted = true;
 
-  startApp() {
-    //this.navCtrl.push(HomePage);
-    this.navCtrl.setRoot(HomePage);
-  }
+    if (form.valid) {
 
-  getCampaigns(){
-    let userObject : UserObj = ({
-      username: 'kolexinfos',
-      email : 'kolexinfos@gmail.com',
-      password : 'abc123',
-      phone : '07062067512'
-    });
-
-    this.userProvider.RegisterUser(userObject).subscribe(
-      data => {
-       //this.message = data;
-        if (data.status = 201){
+    this.userProvider.RegisterUser(this.signup).subscribe(
+        data => {
+        //this.message = data;
+        if (data.status = 201) {
           console.log(data);
-          Toast.show("Successfully Sign up", "short", 'bottom').subscribe(
+          Toast.show("Successfully signed up", "short", 'bottom').subscribe(
               toast => {
               console.log(toast);
             }
           );
           this.navCtrl.setRoot(HomePage);
         }
-        else{
-          console.log(data.status);
+        else {
+          console.log(data);
           Toast.show("An error occurred during sign up", "short", 'bottom').subscribe(
               toast => {
               console.log(toast);
             }
           );
         }
-       // console.log(data.results);
+        // console.log(data.results);
       },
-      err => {
+        err => {
         console.log(err);
 
         Toast.show(err.message, "short", 'bottom').subscribe(
@@ -81,8 +72,9 @@ export class SignupPage {
       },
       () => console.log("Went back and forth Heroku")
     )
+  }
 
-    //this.service.getCampaigns("The signup page rocks");
+
   }
 
 }

@@ -22,7 +22,7 @@ interface Slide {
 export class TutorialPage {
   slides: Slide[];
   showSkip = true;
-  
+
 
   constructor(public navCtrl: NavController, public menu: MenuController, private userProvider: UserProvider) {
     this.slides = [
@@ -50,7 +50,7 @@ export class TutorialPage {
   }
 
   startApp() {
-    //this.navCtrl.push(HomePage);
+
     this.navCtrl.setRoot(SignupPage);
   }
 
@@ -61,26 +61,22 @@ export class TutorialPage {
   ionViewDidEnter() {
     // the root left menu should be disabled on the tutorial page
     this.menu.enable(false);
-    //this.userProvider.GetLocalUser();
+
   }
 
   ionViewWillLeave() {
     // enable the root left menu when leaving the tutorial page
     this.menu.enable(true);
-    
+
   }
-  
+
   ionViewWillEnter(){
     console.log("ionViewWillEnter called");
-    
-    console.log(this.userProvider.LocalUser);
-    
-    if(this.userProvider.LocalUser != null)
-    {
-      this.navCtrl.setRoot(SignupPage); 
-      console.log(this.userProvider.LocalUser);
+    console.log(this.userProvider.GetLocalUser());
+
+    if(this.userProvider.GetLocalUser() != null){
+      this.navCtrl.setRoot(HomePage)
     }
-    
   }
 
 }

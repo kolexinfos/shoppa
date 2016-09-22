@@ -3,4 +3,5 @@ www/build/
 platforms/
 plugins/
 misc/
+.idea/
 .DS_Store
