@@ -12,6 +12,8 @@ Then, to run it, cd into the folder and run:
 
 ```
 $ ionic platform add android
+```
+```
 $ ionic run android
 ```
 
