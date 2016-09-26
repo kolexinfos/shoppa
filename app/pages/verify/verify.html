@@ -14,5 +14,18 @@
 
 
 <ion-content padding>
-
+    <ion-card>
+      <ion-list>
+            <form #verifyForm="ngForm" novalidate>
+                  <ion-item>
+                    <ion-label floating primary>Please insert the Code here</ion-label>
+                    <ion-input [(ngModel)]="verify.code" name="code" type="text" #code="ngModel" minlength="5">
+                    </ion-input>
+                  </ion-item>
+                  <p [hidden]="code.valid || submitted == false" danger padding-left>
+                    Please enter your fullname, cannot be less than 5 characters.
+                  </p>
+            </form>
+      </ion-list>
+    </ion-card>
 </ion-content>

@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { Toast } from 'ionic-native'
 
 import { HomePage } from '../home/home';
+import { VerifyPage } from '../verify/verify';
 
 import { UserProvider } from '../../providers/user-provider/user-provider';
 
@@ -48,7 +49,7 @@ export class SignupPage {
               console.log(toast);
             }
           );
-          this.navCtrl.setRoot(HomePage);
+          this.navCtrl.setRoot(VerifyPage);
         }
         else {
           console.log(data);
