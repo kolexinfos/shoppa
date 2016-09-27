@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import { HomePage } from '../home/home';
+
 import { UserProvider } from '../../providers/user-provider/user-provider';
 
 /*
@@ -27,18 +29,20 @@ export class VerifyPage {
   
       this.verify.email = this.navParams.get('email');
       
-      if (form.valid) {
-        this.userProvider.verifyEmail(this.verify).subscribe(
-          data => {
+      // if (form.valid) {
+      //   this.userProvider.verifyEmail(this.verify).subscribe(
+      //     data => {
             
-          },
-          err => {
+      //     },
+      //     err => {
             
-          },
+      //     },
           
-          () => console.log("Went back and forth Heroku for verifyEmail")
-          )
-      }
+      //     () => console.log("Went back and forth Heroku for verifyEmail")
+      //     )
+      // }
+      
+      this.navCtrl.setRoot(HomePage);
   }
 
 }

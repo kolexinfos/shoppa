@@ -28,7 +28,7 @@ export class MyApp {
 
   pages : PageObj[] = [
     { title: 'Home', component: HomePage, icon: 'contacts' },
-    { title: 'Top Promotions', component: HomePage, icon: 'person', index:1 },
+    { title: 'Trending', component: HomePage, icon: 'person', index:1 },
     { title: 'Search Campaigns', component: HomePage, icon: 'search', index:2 },
     //{ title: 'Messages', component: HomePage, icon: 'email', index:3 },
     { title: 'Favorites', component: HomePage, icon: 'bookmark', index:4 },
