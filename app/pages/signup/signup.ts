@@ -44,34 +44,37 @@ export class SignupPage {
         //this.message = data;
         if (data.status = 201) {
           console.log(data);
-          Toast.show("Successfully signed up", "short", 'bottom').subscribe(
-              toast => {
-              console.log(toast);
-            }
-          );
-          this.navCtrl.setRoot(VerifyPage);
+          // Toast.show("Successfully signed up", "short", 'bottom').subscribe(
+          //     toast => {
+          //     console.log(toast);
+          //   }
+          // );
+          this.navCtrl.push(VerifyPage,{
+            username : this.signup.username,
+            email : this.signup.email
+          });
         }
         else {
           console.log(data);
-          Toast.show("An error occurred during sign up", "short", 'bottom').subscribe(
-              toast => {
-              console.log(toast);
-            }
-          );
+          // Toast.show("An error occurred during sign up", "short", 'bottom').subscribe(
+          //     toast => {
+          //     console.log(toast);
+          //   }
+          // );
         }
         // console.log(data.results);
       },
         err => {
         console.log(err);
 
-        Toast.show(err.message, "short", 'bottom').subscribe(
-            toast => {
-            console.log(toast);
-          }
-        );
-        this.navCtrl.setRoot(HomePage);
+        // Toast.show(err.message, "short", 'bottom').subscribe(
+        //     toast => {
+        //     console.log(toast);
+        //   }
+        // );
+       
       },
-      () => console.log("Went back and forth Heroku")
+      () => console.log("Went back and forth Heroku RegisterUser")
     )
   }
 

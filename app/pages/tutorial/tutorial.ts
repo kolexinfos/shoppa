@@ -72,9 +72,9 @@ export class TutorialPage {
 
   ionViewWillEnter(){
     console.log("ionViewWillEnter called");
-    console.log(this.userProvider.GetLocalUser());
+    console.log(this.userProvider.GetLocalObject('user'));
 
-    if(this.userProvider.GetLocalUser() != null){
+    if(this.userProvider.GetLocalObject('user') != null){
       this.navCtrl.setRoot(HomePage)
     }
   }

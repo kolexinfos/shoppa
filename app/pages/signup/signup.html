@@ -22,7 +22,7 @@
     <form #signupForm="ngForm" novalidate>
       <ion-item>
         <ion-label floating primary>Full Name</ion-label>
-        <ion-input [(ngModel)]="signup.username" name="username" type="text" #username="ngModel" minlength="5">
+        <ion-input [(ngModel)]="signup.username" name="username" type="text" #username="ngModel" minlength="10">
         </ion-input>
       </ion-item>
       <p [hidden]="username.valid || submitted == false" danger padding-left>

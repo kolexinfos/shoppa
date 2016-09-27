@@ -18,13 +18,17 @@
       <ion-list>
             <form #verifyForm="ngForm" novalidate>
                   <ion-item>
-                    <ion-label floating primary>Please insert the Code here</ion-label>
+                    <ion-label floating primary>Please insert the code you received via your email here</ion-label>
                     <ion-input [(ngModel)]="verify.code" name="code" type="text" #code="ngModel" minlength="5">
                     </ion-input>
                   </ion-item>
                   <p [hidden]="code.valid || submitted == false" danger padding-left>
-                    Please enter your fullname, cannot be less than 5 characters.
+                    Please enter the correct code sent to your email.
                   </p>
+                  
+                  <div padding>
+                    <button (click)="verifyEmail(verifyForm)" type="submit" primary block>Verify</button>
+                  </div>
             </form>
       </ion-list>
     </ion-card>

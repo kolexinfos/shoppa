@@ -13,26 +13,35 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class UserProvider {
 
+   url:string = 'https://shoppa.herokuapp.com/users/';
   constructor(private http: Http) {}
+  
 
   RegisterUser(userObject){
     let body = JSON.stringify({ userObject });
     let headers =  new Headers({'Content' : 'application/json'});
     let options = new RequestOptions({ headers : headers});
 
-    var url = 'https://shoppa.herokuapp.com/users/register';
-
-    var response = this.http.post(url,userObject, options);
+    var response = this.http.post(this.url + 'register',userObject, options);
     return response;
   }
 
-  GetLocalUser(){
-    return window.localStorage.getItem('user');
+  GetLocalObject(objName){
+    return window.localStorage.getItem(objName);
 
   }
 
-  SetLocalUser(user){
-    window.localStorage.setItem('user', user);
+  SetLocalObject(objName, user){
+    window.localStorage.setItem(objName, user);
+  }
+  
+  verifyEmail(verify){
+    let body
+    let headers =  new Headers({'Content' : 'application/json'});
+    let options = new RequestOptions({ headers : headers});
+    
+    var response = this.http.post(this.url + 'verifyEmail',verify, options);
+    return response;
   }
 
 }
