@@ -5,6 +5,9 @@ import { StatusBar, Splashscreen, Push } from 'ionic-native';
 import { HomePage } from './pages/home/home';
 import { TutorialPage } from './pages/tutorial/tutorial'
 import { VerifyPage } from './pages/verify/verify'
+import { FavoritesPage } from './pages/favorites/favorites';
+import { TrendingPage } from './pages/trending/trending';
+import { HomePage } from './pages/search/search';
 
 
 import { UserProvider } from './providers/user-provider/user-provider';
@@ -28,11 +31,10 @@ export class MyApp {
 
   pages : PageObj[] = [
     { title: 'Home', component: HomePage, icon: 'contacts' },
-    { title: 'Trending', component: HomePage, icon: 'person', index:1 },
+    { title: 'Trending', component: TrendingPage, icon: 'person', index:1 },
     { title: 'Search Campaigns', component: HomePage, icon: 'search', index:2 },
     //{ title: 'Messages', component: HomePage, icon: 'email', index:3 },
-    { title: 'Favorites', component: HomePage, icon: 'bookmark', index:4 },
-    { title: 'Reviews/Comments', component: HomePage, icon: 'chatboxes', index:5 },
+    { title: 'Favorites', component: FavoritesPage, icon: 'bookmark', index:4 },
   ];
 
   loggedInPages: PageObj[] = [
