@@ -7,7 +7,7 @@ import { TutorialPage } from './pages/tutorial/tutorial'
 import { VerifyPage } from './pages/verify/verify'
 import { FavoritesPage } from './pages/favorites/favorites';
 import { TrendingPage } from './pages/trending/trending';
-import { HomePage } from './pages/search/search';
+import { SearchPage } from './pages/search/search';
 
 
 import { UserProvider } from './providers/user-provider/user-provider';
@@ -81,6 +81,25 @@ export class MyApp {
       // });
     });
 
+  }
+  
+  openPage(page: PageObj) {
+    // the nav component was found using @ViewChild(Nav)
+    // reset the nav to remove previous pages and only have this page
+    // we wouldn't want the back button to show in this scenario
+    if (page.index) {
+      this.nav.setRoot(page.component, {tabIndex: page.index});
+
+    } else {
+      this.nav.setRoot(page.component);
+    }
+
+    if (page.title === 'Logout') {
+      // Give the menu time to close before changing to logged out
+      setTimeout(() => {
+        this.userData.logout();
+      }, 1000);
+    }
   }
   
   
