@@ -15,10 +15,10 @@ export class UserProvider {
 
    url:string = 'https://shoppa.herokuapp.com/users/';
   constructor(private http: Http) {}
-  
+
 
   RegisterUser(userObject){
-    let body = JSON.stringify({ userObject });
+
     let headers =  new Headers({'Content' : 'application/json'});
     let options = new RequestOptions({ headers : headers});
 
@@ -34,12 +34,13 @@ export class UserProvider {
   SetLocalObject(objName, user){
     window.localStorage.setItem(objName, user);
   }
-  
+
   verifyEmail(verify){
-    let body
+    console.log(verify);
+
     let headers =  new Headers({'Content' : 'application/json'});
     let options = new RequestOptions({ headers : headers});
-    
+
     var response = this.http.post(this.url + 'verifyEmail',verify, options);
     return response;
   }

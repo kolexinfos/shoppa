@@ -56,6 +56,7 @@ export class SignupPage {
         }
         else {
           console.log(data);
+
           // Toast.show("An error occurred during sign up", "short", 'bottom').subscribe(
           //     toast => {
           //     console.log(toast);
@@ -66,13 +67,12 @@ export class SignupPage {
       },
         err => {
         console.log(err);
-
         // Toast.show(err.message, "short", 'bottom').subscribe(
         //     toast => {
         //     console.log(toast);
         //   }
         // );
-       
+
       },
       () => console.log("Went back and forth Heroku RegisterUser")
     )

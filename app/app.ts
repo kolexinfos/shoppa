@@ -27,7 +27,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = TutorialPage;
-  
+
 
   pages : PageObj[] = [
     { title: 'Home', component: HomePage, icon: 'contacts' },
@@ -51,11 +51,11 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
-      
-     
-      
+
+
+
       Splashscreen.hide();
-      
+
       // var push = Push.init({
       //   android: {
       //     senderID: "126468130105"
@@ -82,7 +82,7 @@ export class MyApp {
     });
 
   }
-  
+
   openPage(page: PageObj) {
     // the nav component was found using @ViewChild(Nav)
     // reset the nav to remove previous pages and only have this page
@@ -97,12 +97,12 @@ export class MyApp {
     if (page.title === 'Logout') {
       // Give the menu time to close before changing to logged out
       setTimeout(() => {
-        this.userData.logout();
+
       }, 1000);
     }
   }
-  
-  
+
+
 }
 
 ionicBootstrap(MyApp, [UserProvider]);
