@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 /*
@@ -10,8 +10,20 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class CampaignProvider {
+  url:string = 'https://shoppa.herokuapp.com/campaigns/';
 
-  constructor(private http: Http) {}
+  constructor(private http: Http) {
+
+  }
+
+  GetCampaigns(){
+    let headers =  new Headers({'Content' : 'application/json'});
+    let options = new RequestOptions({ headers : headers});
+
+    var response = this.http.get(this.url, options)
+      .map(res => res.json());
+    return response;
+  }
 
 }
 

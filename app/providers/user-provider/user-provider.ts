@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
-import { MenuController, NavController, LocalStorage , Storage } from 'ionic-angular';
+import { LocalStorage , Storage } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 
 
@@ -13,7 +13,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class UserProvider {
 
-   url:string = 'https://shoppa.herokuapp.com/users/';
+  url:string = 'https://shoppa.herokuapp.com/users/';
   constructor(private http: Http) {}
 
 
