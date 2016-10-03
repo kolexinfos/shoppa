@@ -1,19 +1,33 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-/*
-  Generated class for the TrendingPage page.
+import { CampaignProvider } from '../../providers/campaign-provider/campaign-provider';
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
-  templateUrl: 'build/pages/trending/trending.html',
+  templateUrl: 'build/pages/home/home.html',
+  providers: [CampaignProvider]
 })
 export class TrendingPage {
+  campaigns = [];
 
-  constructor(private navCtrl: NavController) {
-
+  constructor(public navCtrl: NavController, private campaignProvider: CampaignProvider) {
+    campaignProvider.GetCampaigns().subscribe(
+        data => {
+        console.log(data.result);
+        console.log(data.message);
+        this.campaigns = data.result;
+      },
+        err => {
+        console.log(err);
+      },
+      () => console.log('Pulling data')
+    )
   }
+
+  ionViewWillEnter(){
+    console.log('Entered into the view');
+  }
+
+
 
 }

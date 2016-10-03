@@ -9,123 +9,44 @@
 
 <ion-content class="cards-bg social-cards">
 
-  <ion-card>
+  <ion-card *ngFor="let campaign of campaigns">
 
     <ion-item>
       <ion-avatar item-left>
-        <img src="img/mtn-avatar.jpg">
+        <img [src]="campaign.image">
       </ion-avatar>
-      <h2>MTN XtraData</h2>
+      <h2>{{campaign.name}}</h2>
       <p>July 5, 2016</p>
     </ion-item>
 
-    <img src="img/mtn-xtravalue_0.jpg">
+    <img [src]="campaign.image">
 
     <ion-card-content>
-      <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you can enjoy all these goodies just for this little price??.</p>
+      <p>{{campaign.description}}</p>
     </ion-card-content>
 
     <ion-row>
       <ion-col>
         <button primary clear small>
           <ion-icon name='thumbs-up'></ion-icon>
-          <div>12 Likes</div>
+          <div>{{campaign.likes}} Likes</div>
         </button>
       </ion-col>
       <ion-col>
         <button primary clear small>
           <ion-icon ios="ios-share" md="md-share"></ion-icon>
-          <div>4 Shares</div>
+          <div>{{campaign.likes}} Shares</div>
         </button>
       </ion-col>
       <ion-col>
         <button primary clear small>
           <ion-icon name='person-add'></ion-icon>
-          <div>4 Opt In</div>
+          <div>{{campaign.wantin}} Opt In</div>
         </button>
       </ion-col>
     </ion-row>
 
   </ion-card>
-
-
-  <ion-card>
-
-    <ion-item>
-      <ion-avatar item-left>
-        <img src="img/Shop_Rite-logo-new.gif">
-      </ion-avatar>
-      <h2>Shoprite Extravaganza</h2>
-      <p>May 15, 2016</p>
-    </ion-item>
-
-    <img src="img/shoprite.jpg">
-
-    <ion-card-content>
-      <p>I face the unknown future, with a sense of hope. Because if a machine, a Terminator, can learn the value of human life, maybe we can too.</p>
-    </ion-card-content>
-
-    <ion-row>
-      <ion-col>
-        <button primary clear small>
-          <ion-icon name='thumbs-up'></ion-icon>
-          <div>30 Likes</div>
-        </button>
-      </ion-col>
-      <ion-col>
-        <button primary clear small>
-          <ion-icon name='text'></ion-icon>
-          <div>64 Comments</div>
-        </button>
-      </ion-col>
-      <ion-col center text-center>
-        <ion-note>
-          3 minutes left
-        </ion-note>
-      </ion-col>
-    </ion-row>
-
-  </ion-card>
-
-
-  <ion-card>
-
-    <ion-item>
-      <ion-avatar item-left>
-        <img src="img/gtb-logo.jpg">
-      </ion-avatar>
-      <h2>GTB Back To School Promo</h2>
-      <p>August 27, 2016 </p>
-    </ion-item>
-
-    <img src="img/gtb.jpg">
-
-    <ion-card-content>
-      <p>Your scientists were so preoccupied with whether or not they could, that they didn't stop to think if they should.</p>
-    </ion-card-content>
-
-    <ion-row>
-      <ion-col>
-        <button primary clear small>
-          <ion-icon name='thumbs-up'></ion-icon>
-          <div>46 Likes</div>
-        </button>
-      </ion-col>
-      <ion-col>
-        <button primary clear small>
-          <ion-icon name='text'></ion-icon>
-          <div>66 Comments</div>
-        </button>
-      </ion-col>
-      <ion-col center text-center>
-        <ion-note>
-          1 hour left
-        </ion-note>
-      </ion-col>
-    </ion-row>
-
-  </ion-card>
-
 
 </ion-content>
 
