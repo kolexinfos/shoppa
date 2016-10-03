@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { Toast } from 'ionic-native';
 
 import { CampaignProvider } from '../../providers/campaign-provider/campaign-provider';
 
@@ -28,6 +29,34 @@ export class HomePage {
     console.log('Entered into the view');
   }
 
+  likeCampaign(campaign){
+    console.log(campaign.name + ' has been liked');
 
+    Toast.show(campaign.name + "liked", "short", 'bottom').subscribe(
+        toast => {
+        console.log(toast);
+      }
+    );
+
+  }
+
+  optInToCampaign(campaign){
+    console.log(campaign.name + ' has been opted into' );
+    Toast.show(campaign.name + "opted in to", "short", 'bottom').subscribe(
+        toast => {
+        console.log(toast);
+      }
+    );
+  }
+
+  shareCampaign(campaign){
+    console.log(campaign.name + ' has been shared');
+
+    Toast.show(campaign.name + "shared", "short", 'bottom').subscribe(
+        toast => {
+        console.log(toast);
+      }
+    );
+  }
 
 }

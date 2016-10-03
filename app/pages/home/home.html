@@ -27,19 +27,19 @@
 
     <ion-row>
       <ion-col>
-        <button primary clear small>
+        <button primary clear small (click)="likeCampaign(campaign)">
           <ion-icon name='thumbs-up'></ion-icon>
           <div>{{campaign.likes}} Likes</div>
         </button>
       </ion-col>
       <ion-col>
-        <button primary clear small>
+        <button primary clear small (click)="shareCampaign(campaign)">
           <ion-icon ios="ios-share" md="md-share"></ion-icon>
           <div>{{campaign.likes}} Shares</div>
         </button>
       </ion-col>
       <ion-col>
-        <button primary clear small>
+        <button primary clear small (click)="optInToCampaign(campaign)">
           <ion-icon name='person-add'></ion-icon>
           <div>{{campaign.wantin}} Opt In</div>
         </button>
