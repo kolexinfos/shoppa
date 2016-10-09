@@ -9,6 +9,7 @@ import { CampaignProvider } from '../../providers/campaign-provider/campaign-pro
   providers: [CampaignProvider]
 })
 export class HomePage {
+  campaignOject: {name?:string, image?:string, description?: string, likes?: number, shares?:number, wantin?:number } = {};
   campaigns = [];
 
   constructor(public navCtrl: NavController, private campaignProvider: CampaignProvider) {
@@ -32,11 +33,26 @@ export class HomePage {
   likeCampaign(campaign){
     console.log(campaign.name + ' has been liked');
 
-    Toast.show(campaign.name + " liked", "short", 'bottom').subscribe(
-        toast => {
-        console.log(toast);
-      }
-    );
+    //TODO: Pick the User Email from localstorage
+    campaign.email = 'koexinfos@gmail.com';
+
+    console.log(campaign);
+    this.campaignProvider.LikeCampaigns(campaign).subscribe(
+      data => {
+        console.log(data.result);
+
+      },
+      err => {
+        console.log(err);
+      },
+      () => console.log(campaign.name + ' campaign was liked.')
+    )
+
+    //Toast.show(campaign.name + " liked", "short", 'bottom').subscribe(
+    //    toast => {
+    //    console.log(toast);
+    //  }
+    //);
 
   }
 

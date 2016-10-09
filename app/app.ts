@@ -26,7 +26,7 @@ interface PageObj {
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = TutorialPage;
+  rootPage: any = HomePage;
 
 
   pages : PageObj[] = [
