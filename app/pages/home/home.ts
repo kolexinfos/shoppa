@@ -32,7 +32,7 @@ export class HomePage {
   likeCampaign(campaign){
     console.log(campaign.name + ' has been liked');
 
-    Toast.show(campaign.name + "liked", "short", 'bottom').subscribe(
+    Toast.show(campaign.name + " liked", "short", 'bottom').subscribe(
         toast => {
         console.log(toast);
       }
@@ -42,7 +42,7 @@ export class HomePage {
 
   optInToCampaign(campaign){
     console.log(campaign.name + ' has been opted into' );
-    Toast.show(campaign.name + "opted in to", "short", 'bottom').subscribe(
+    Toast.show(campaign.name + " opted in to", "short", 'bottom').subscribe(
         toast => {
         console.log(toast);
       }
@@ -52,7 +52,7 @@ export class HomePage {
   shareCampaign(campaign){
     console.log(campaign.name + ' has been shared');
 
-    Toast.show(campaign.name + "shared", "short", 'bottom').subscribe(
+    Toast.show(campaign.name + " shared", "short", 'bottom').subscribe(
         toast => {
         console.log(toast);
       }

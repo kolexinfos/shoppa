@@ -12,16 +12,26 @@ import 'rxjs/add/operator/map';
 export class CampaignProvider {
   url:string = 'https://shoppa.herokuapp.com/campaigns/';
 
+  headers =  new Headers({'Content' : 'application/json'});
+  options = new RequestOptions({ headers : this.headers});
+
   constructor(private http: Http) {
 
   }
 
   GetCampaigns(){
-    let headers =  new Headers({'Content' : 'application/json'});
-    let options = new RequestOptions({ headers : headers});
 
-    var response = this.http.get(this.url, options)
+    var response = this.http.get(this.url, this.options)
       .map(res => res.json());
+
+    return response;
+  }
+
+  LikeCampaigns(campaign){
+
+      var response = this.http.post(this.url,campaign, this.options)
+        .map(res => res.json());
+
     return response;
   }
 
