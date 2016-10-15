@@ -37,6 +37,9 @@ export class VerifyPage {
             console.log(data)
             if(data.status == 201){
               this.navCtrl.setRoot(HomePage);
+
+              this.userProvider.SetLocalObject("user",this.verify.email);
+
               Toast.show("Token was verified successfully", "short", 'bottom').subscribe(
                    toast => {
                    console.log(toast);

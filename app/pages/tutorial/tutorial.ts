@@ -75,7 +75,7 @@ export class TutorialPage {
     console.log(this.userProvider.GetLocalObject('user'));
 
     if(this.userProvider.GetLocalObject('user') != null){
-      this.navCtrl.setRoot(HomePage)
+      this.navCtrl.setRoot(HomePage);
     }
   }
 

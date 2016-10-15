@@ -50,10 +50,10 @@ export class SignupPage {
 
       this.userProvider.LoginUser(this.userObject).subscribe(
         data => {
-          console.log(data.message);
+          console.log(data);
           if(data.status == 200){
             this.navCtrl.push(HomePage);
-            this.userProvider.SetLocalObject("user", this.userObject);
+            this.userProvider.SetLocalObject("user", this.login.emailLogin);
 
             Toast.show("Login was successful.", "short", 'bottom').subscribe(
                 toast => {
