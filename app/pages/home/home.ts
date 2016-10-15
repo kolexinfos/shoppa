@@ -11,6 +11,7 @@ import { CampaignProvider } from '../../providers/campaign-provider/campaign-pro
 export class HomePage {
   campaignOject: {name?:string, image?:string, description?: string, likes?: number, shares?:number, wantin?:number } = {};
   campaigns = [];
+  like:{email?:string, campaignid?:string} ={};
 
   constructor(public navCtrl: NavController, private campaignProvider: CampaignProvider) {
     campaignProvider.GetCampaigns().subscribe(
@@ -33,11 +34,14 @@ export class HomePage {
   likeCampaign(campaign){
     console.log(campaign.name + ' has been liked');
 
-    //TODO: Pick the User Email from localstorage
-    campaign.email = 'koexinfos@gmail.com';
 
-    console.log(campaign);
-    this.campaignProvider.LikeCampaigns(campaign).subscribe(
+    this.like.email = 'kolexinfos@gmail.com';
+    this.like.campaignid = campaign._id;
+    //TODO: Pick the User Email from localstorage
+    //campaign.email = 'kolexinfos@gmail.com';
+
+    console.log(this.like);
+    this.campaignProvider.LikeCampaigns(this.like).subscribe(
       data => {
         console.log(data.result);
 

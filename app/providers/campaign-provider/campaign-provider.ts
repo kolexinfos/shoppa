@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class CampaignProvider {
-  url:string = 'https://shoppa.herokuapp.com/';
+  url:string = 'https://shoppa.herokuapp.com/campaigns/';
 
 
   headers =  new Headers({'Content' : 'application/json'});
@@ -22,7 +22,7 @@ export class CampaignProvider {
 
   GetCampaigns(){
 
-    var response = this.http.get(this.url + 'campaigns', this.options)
+    var response = this.http.get(this.url, this.options)
       .map(res => res.json());
 
     return response;
@@ -30,7 +30,7 @@ export class CampaignProvider {
 
   LikeCampaigns(campaign){
 
-      var response = this.http.post(this.url + 'likes',campaign, this.options)
+      var response = this.http.post(this.url + 'likeCampaign',campaign, this.options)
         .map(res => res.json());
 
     return response;

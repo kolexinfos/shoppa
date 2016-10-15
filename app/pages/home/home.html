@@ -29,13 +29,13 @@
       <ion-col>
         <button primary clear small (click)="likeCampaign(campaign)">
           <ion-icon name='thumbs-up'></ion-icon>
-          <div>{{campaign.likes}} Likes</div>
+          <div>{{campaign.likes.length}} Likes</div>
         </button>
       </ion-col>
       <ion-col>
         <button primary clear small (click)="shareCampaign(campaign)">
           <ion-icon ios="ios-share" md="md-share"></ion-icon>
-          <div>{{campaign.likes}} Shares</div>
+          <div>{{campaign.likes.length}} Shares</div>
         </button>
       </ion-col>
       <ion-col>
