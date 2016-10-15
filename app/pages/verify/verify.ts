@@ -37,11 +37,11 @@ export class VerifyPage {
             console.log(data)
             if(data.status == 201){
               this.navCtrl.setRoot(HomePage);
-              // Toast.show("Token was verified successfully", "short", 'bottom').subscribe(
-              //     toast => {
-              //     console.log(toast);
-              //   }
-              // );
+              Toast.show("Token was verified successfully", "short", 'bottom').subscribe(
+                   toast => {
+                   console.log(toast);
+                 }
+              );
             }
             else{
 
@@ -49,11 +49,11 @@ export class VerifyPage {
           },
           err => {
             console.log(err);
-            // Toast.show("There was an error during token verification, please try again later", "short", 'bottom').subscribe(
-            //     toast => {
-            //     console.log(toast);
-            //   }
-            // );
+            Toast.show("There was an error during token verification, please try again later", "short", 'bottom').subscribe(
+                 toast => {
+                 console.log(toast);
+               }
+            );
           },
 
           () => console.log("Went back and forth Heroku for verifyEmail")

@@ -15,9 +15,41 @@
 
 <ion-content >
   <ion-list>
-    <div class="logo">
-      <img src="img/appicon.svg">
-    </div>
+
+      <form #loginForm="ngForm" novalidate>
+        <ion-item>
+          <ion-label floating primary>Email Address</ion-label>
+          <ion-input [(ngModel)]="login.email" name="email" type="text" #email="ngModel" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+          </ion-input>
+        </ion-item>
+        <div [hidden]="email.valid || email.untouched" >
+          <p  *ngIf="email.errors && email.errors.required" danger padding-left>
+            Email is required
+          </p>
+          <p *ngIf="email.errors && email.errors.pattern" danger padding-left>
+            Email is invalid
+          </p>
+        </div>
+
+        <ion-item>
+          <ion-label floating primary>Password</ion-label>
+          <ion-input [(ngModel)]="login.password" name="password" type="password" #password="ngModel" required>
+          </ion-input>
+        </ion-item>
+        <p [hidden]="password.valid || submitted == false" danger padding-left>
+          Password is required
+        </p>
+
+        <div padding>
+          <button (click)="onLogin(loginForm)" type="submit" primary block>Login</button>
+        </div>
+
+      </form>
+  </ion-list>
+  <ion-list>
+    <!--<div class="logo">-->
+      <!--<img src="img/appicon.svg">-->
+    <!--</div>-->
 
     <form #signupForm="ngForm" novalidate>
       <ion-item>
@@ -62,7 +94,7 @@
       </p>
 
       <div padding>
-        <button (click)="onSignup(signupForm)" type="submit" primary block>Join</button>
+        <button (click)="onSignup(signupForm)" type="submit" primary block>Signup</button>
       </div>
     </form>
   </ion-list>

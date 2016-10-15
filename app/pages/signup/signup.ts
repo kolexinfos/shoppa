@@ -29,10 +29,16 @@ interface UserObj {
 
 export class SignupPage {
   signup: {username?: string, password?: string, email?: string, phone?: string} = {};
+  login: {email?: string, password?: string} = {};
+
   public message:any = '';
   submitted = false;
 
   constructor(private navCtrl: NavController,private userProvider: UserProvider) { }
+
+  onLogin(form){
+    console.log(form);
+  }
 
     onSignup(form) {
     this.submitted = true;
