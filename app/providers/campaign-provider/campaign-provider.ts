@@ -36,5 +36,19 @@ export class CampaignProvider {
     return response;
   }
 
+  ShareCampaign(campaign){
+    var response = this.http.post(this.url + 'shareCampaign', campaign, this.options)
+    .map(res => res.json());
+
+    return response;
+  }
+
+  WantInCampaign(campaign){
+    var response = this.http.post(this.url + 'wantinCampaign', campaign, this.options)
+    .map(res => res.json());
+
+    return response;
+  }
+
 }
 

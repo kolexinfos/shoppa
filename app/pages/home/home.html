@@ -27,7 +27,7 @@
 
     <ion-row>
       <ion-col>
-        <button primary clear small (click)="likeCampaign(campaign)">
+        <button primary clear small (click)="likeCampaign(campaign)" disabled= {{buttonDisabled}}>
           <ion-icon name='thumbs-up'></ion-icon>
           <div>{{campaign.likes.length}} Likes</div>
         </button>
@@ -35,13 +35,13 @@
       <ion-col>
         <button primary clear small (click)="shareCampaign(campaign)">
           <ion-icon ios="ios-share" md="md-share"></ion-icon>
-          <div>{{campaign.likes.length}} Shares</div>
+          <div>{{campaign.share.length}} Shares</div>
         </button>
       </ion-col>
       <ion-col>
         <button primary clear small (click)="optInToCampaign(campaign)">
           <ion-icon name='person-add'></ion-icon>
-          <div>{{campaign.wantin}} Opt In</div>
+          <div>{{campaign.wantin.length}} Opt In</div>
         </button>
       </ion-col>
     </ion-row>
