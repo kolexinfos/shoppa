@@ -31,8 +31,8 @@ export class UserProvider {
 
   }
 
-  SetLocalObject(objName, user){
-    window.localStorage.setItem(objName, user);
+  SetLocalObject(objName, object){
+    window.localStorage.setItem(objName, object);
   }
 
   verifyEmail(verify){
@@ -42,6 +42,14 @@ export class UserProvider {
     let options = new RequestOptions({ headers : headers});
 
     var response = this.http.post(this.url + 'verifyEmail',verify, options);
+    return response;
+  }
+
+  LoginUser(userObject){
+    let headers =  new Headers({'Content' : 'application/json'});
+    let options = new RequestOptions({ headers : headers});
+
+    var response = this.http.post(this.url + 'authenticate', userObject, options);
     return response;
   }
 

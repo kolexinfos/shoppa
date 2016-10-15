@@ -29,15 +29,53 @@ interface UserObj {
 
 export class SignupPage {
   signup: {username?: string, password?: string, email?: string, phone?: string} = {};
-  login: {email?: string, password?: string} = {};
+  login: {emailLogin?: string, passwordLogin?: string} = {};
+  userObject:{email?: string, password?:string} = {};
 
   public message:any = '';
   submitted = false;
+  submitLogin = false;
 
   constructor(private navCtrl: NavController,private userProvider: UserProvider) { }
 
   onLogin(form){
     console.log(form);
+    this.submitLogin = true;
+
+    if(form.valid)
+    {
+
+      this.userObject.email = this.login.emailLogin;
+      this.userObject.password = this.login.passwordLogin;
+
+      this.userProvider.LoginUser(this.userObject).subscribe(
+        data => {
+          console.log(data.message);
+          if(data.status == 200){
+            this.navCtrl.push(HomePage);
+            this.userProvider.SetLocalObject("user", this.userObject);
+
+            Toast.show("Login was successful.", "short", 'bottom').subscribe(
+                toast => {
+                console.log(toast);
+              }
+            );
+          }
+        },
+        err => {
+          console.log(err);
+
+          Toast.show(err.message, "short", 'bottom').subscribe(
+              toast => {
+              console.log(toast);
+            }
+          );
+        },
+        () => console.log("Went back and forth for Login")
+      )
+    }
+
+
   }
 
     onSignup(form) {
@@ -48,7 +86,7 @@ export class SignupPage {
     this.userProvider.RegisterUser(this.signup).subscribe(
         data => {
         //this.message = data;
-        if (data.status = 201) {
+        if (data.status == 201) {
           console.log(data);
           Toast.show("Successfully signed up", "short", 'bottom').subscribe(
                toast => {
@@ -88,4 +126,7 @@ export class SignupPage {
 
   }
 
+    setLocalUser(userObject){
+      this.userProvider.SetLocalObject("user", userObject);
+    }
 }
