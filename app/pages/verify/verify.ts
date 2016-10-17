@@ -34,7 +34,7 @@ export class VerifyPage {
       if (form.valid) {
         this.userProvider.verifyEmail(this.verify).subscribe(
           data => {
-            console.log(data)
+            console.log(data);
             if(data.status == 201){
               this.navCtrl.setRoot(HomePage);
 

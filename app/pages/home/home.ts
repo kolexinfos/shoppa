@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { Toast, SocialSharing } from 'ionic-native';
 
 import { CampaignProvider } from '../../providers/campaign-provider/campaign-provider';
+import { UserProvider } from '../../providers/user-provider/user-provider';
 
 @Component({
   templateUrl: 'build/pages/home/home.html',
@@ -14,10 +15,14 @@ export class HomePage {
   campaigns = [];
   like:{email?:string, campaignid?:string} ={};
   buttonDisabled:boolean;
+  email:string;
 
-  constructor(public navCtrl: NavController, private campaignProvider: CampaignProvider) {
+  constructor(public navCtrl: NavController, private campaignProvider: CampaignProvider, private userProvider: UserProvider) {
     this.getCampaigns();
     this.buttonDisabled = null;
+
+    this.email = userProvider.GetLocalObject("user");
+
   }
 
   ionViewWillEnter(){
@@ -25,7 +30,8 @@ export class HomePage {
   }
 
   getCampaigns(){
-    this.campaignProvider.GetCampaigns().subscribe(
+
+    this.campaignProvider.GetUserCampaigns(this.email).subscribe(
         data => {
         console.log(data.result);
         console.log(data.message);

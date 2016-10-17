@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { CampaignProvider } from '../../providers/campaign-provider/campaign-provider';
+import { UserProvider } from '../../providers/user-provider/user-provider';
 
 @Component({
   templateUrl: 'build/pages/home/home.html',
@@ -10,8 +11,8 @@ import { CampaignProvider } from '../../providers/campaign-provider/campaign-pro
 export class TrendingPage {
   campaigns = [];
 
-  constructor(public navCtrl: NavController, private campaignProvider: CampaignProvider) {
-    campaignProvider.GetCampaigns().subscribe(
+  constructor(public navCtrl: NavController, private campaignProvider: CampaignProvider, private userProvider: UserProvider) {
+    campaignProvider.GetUserCampaigns(userProvider.GetLocalObject("user")).subscribe(
         data => {
         console.log(data.result);
         console.log(data.message);

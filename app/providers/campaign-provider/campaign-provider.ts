@@ -20,9 +20,9 @@ export class CampaignProvider {
 
   }
 
-  GetCampaigns(){
+  GetUserCampaigns(email){
 
-    var response = this.http.get(this.url, this.options)
+    var response = this.http.post(this.url + 'getUserCampaigns', this.options)
       .map(res => res.json());
 
     return response;
