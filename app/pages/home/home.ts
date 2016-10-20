@@ -15,14 +15,13 @@ export class HomePage {
   campaigns = [];
   like:{email?:string, campaignid?:string} ={};
   buttonDisabled:boolean;
-  email:string;
+  user:{email?: string} = {};
 
   constructor(public navCtrl: NavController, private campaignProvider: CampaignProvider, private userProvider: UserProvider) {
-    this.getCampaigns();
     this.buttonDisabled = null;
 
-    this.email = userProvider.GetLocalObject("user");
-
+    this.user.email = userProvider.GetLocalObject("user");
+    this.getCampaigns();
   }
 
   ionViewWillEnter(){
@@ -30,8 +29,9 @@ export class HomePage {
   }
 
   getCampaigns(){
-
-    this.campaignProvider.GetUserCampaigns(this.email).subscribe(
+    console.log(this.user);
+    
+    this.campaignProvider.GetUserCampaigns(this.user).subscribe(
         data => {
         console.log(data.result);
         console.log(data.message);
