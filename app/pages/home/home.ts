@@ -52,21 +52,20 @@ export class HomePage {
     console.log(campaign.name + ' has been liked');
 
 
-    this.like.email = 'kolexinfos@gmail.com';
+    this.like.email = this.user.email;
     this.like.campaignid = campaign._id;
-    //TODO: Pick the User Email from localstorage
-    //campaign.email = 'kolexinfos@gmail.com';
+    
 
     console.log(this.like);
     this.campaignProvider.LikeCampaigns(this.like).subscribe(
       data => {
         console.log(data.result);
         this.buttonDisabled = true;
-        Toast.show(campaign.name + " liked", "short", 'bottom').subscribe(
-            toast => {
-            console.log(toast);
-          }
-        );
+        // Toast.show(campaign.name + " liked", "short", 'bottom').subscribe(
+        //     toast => {
+        //     console.log(toast);
+        //   }
+        // );
 
       },
       err => {
