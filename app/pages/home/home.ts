@@ -27,6 +27,10 @@ export class HomePage {
   ionViewWillEnter(){
     console.log('Entered into the view');
   }
+  
+  ionViewDidEnter(){
+    console.log('Page was fully loaded');
+  }
 
   getCampaigns(){
     console.log(this.user);

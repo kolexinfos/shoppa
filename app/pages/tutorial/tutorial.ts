@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { MenuController, NavController, LocalStorage , Storage } from 'ionic-angular';
+import { MenuController, NavController, LocalStorage , Storage, Platform } from 'ionic-angular';
 
 import { HomePage } from '../home/home';
 import { SignupPage } from '../signup/signup';
@@ -24,7 +24,7 @@ export class TutorialPage {
   showSkip = true;
 
 
-  constructor(public navCtrl: NavController, public menu: MenuController, private userProvider: UserProvider) {
+  constructor(public platform: Platform, public navCtrl: NavController, public menu: MenuController, private userProvider: UserProvider) {
     this.slides = [
       {
         title: 'Welcome to <b>Shoppa</b>',
@@ -47,6 +47,15 @@ export class TutorialPage {
         image: 'img/ica-slidebox-img-3.png',
       }
     ];
+    
+    this.platform.ready().then(() => {
+      console.log("ionViewWillEnter called");
+    console.log(this.userProvider.GetLocalObject('user'));
+
+    if(this.userProvider.GetLocalObject('user') != null){
+      this.navCtrl.setRoot(HomePage);
+    }
+    });
   }
 
   startApp() {
@@ -60,7 +69,7 @@ export class TutorialPage {
 
   ionViewDidEnter() {
     // the root left menu should be disabled on the tutorial page
-    this.menu.enable(false);
+    this.menu.enable(true);
 
   }
 
@@ -68,15 +77,6 @@ export class TutorialPage {
     // enable the root left menu when leaving the tutorial page
     this.menu.enable(true);
 
-  }
-
-  ionViewWillEnter(){
-    console.log("ionViewWillEnter called");
-    console.log(this.userProvider.GetLocalObject('user'));
-
-    if(this.userProvider.GetLocalObject('user') != null){
-      this.navCtrl.setRoot(HomePage);
-    }
   }
 
 }
