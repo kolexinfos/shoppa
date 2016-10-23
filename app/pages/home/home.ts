@@ -2,8 +2,13 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Toast, SocialSharing } from 'ionic-native';
 
+import * as _ from 'lodash'
+
 import { CampaignProvider } from '../../providers/campaign-provider/campaign-provider';
 import { UserProvider } from '../../providers/user-provider/user-provider';
+
+interface Like {email?:string, timestamp?:Date};
+interface campaignObject {name?:string, image?:string, description?: string, likes: [any], shares?:number, wantin?:number };
 
 @Component({
   templateUrl: 'build/pages/home/home.html',
@@ -11,7 +16,7 @@ import { UserProvider } from '../../providers/user-provider/user-provider';
 })
 
 export class HomePage {
-  campaignOject: {name?:string, image?:string, description?: string, likes?: number, shares?:number, wantin?:number } = {};
+
   campaigns = [];
   like:{email?:string, campaignid?:string} ={};
   buttonDisabled:boolean;
@@ -19,7 +24,7 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, private campaignProvider: CampaignProvider, private userProvider: UserProvider) {
     this.buttonDisabled = null;
-
+    console.log( _.sum([4, 2, 8, 6]) );
     this.user.email = userProvider.GetLocalObject("user");
     this.getCampaigns();
   }
@@ -27,20 +32,21 @@ export class HomePage {
   ionViewWillEnter(){
     console.log('Entered into the view');
   }
-  
+
   ionViewDidEnter(){
     console.log('Page was fully loaded');
   }
 
   getCampaigns(){
     console.log(this.user);
-    
+
     this.campaignProvider.GetUserCampaigns(this.user).subscribe(
         data => {
-        console.log(data.result);
-        console.log(data.message);
-        this.campaigns = data.result;
-      },
+          console.log(data.result);
+          this.campaigns = data.result;
+
+         //_.filter(data.result, {likes: [{email: this.user.email}] });
+        },
         err => {
         console.log(err);
       },
@@ -54,7 +60,7 @@ export class HomePage {
 
     this.like.email = this.user.email;
     this.like.campaignid = campaign._id;
-    
+
 
     console.log(this.like);
     this.campaignProvider.LikeCampaigns(this.like).subscribe(
