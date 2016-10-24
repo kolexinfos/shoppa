@@ -5,6 +5,15 @@
     </button>
     <ion-title>Shoppa</ion-title>
   </ion-navbar>
+
+  <ion-toolbar no-border-top>
+    <ion-searchbar primary
+                   [(ngModel)]="queryText"
+                   (ionInput)="updateSchedule()"
+                   placeholder="Search">
+    </ion-searchbar>
+  </ion-toolbar>
+
 </ion-header>
 
 <ion-content >
@@ -27,7 +36,7 @@
 
     <ion-row>
       <ion-col>
-        <button primary clear small (click)="likeCampaign(campaign)" disabled= {{buttonDisabled}}>
+        <button primary clear small (click)="likeCampaign(campaign)">
           <ion-icon name='thumbs-up'></ion-icon>
           <div>{{campaign.likes.length}} Likes</div>
         </button>

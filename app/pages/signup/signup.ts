@@ -39,7 +39,7 @@ export class SignupPage {
   constructor(private navCtrl: NavController,private userProvider: UserProvider) { }
 
   onLogin(form){
-    console.log(form);
+    console.log("The details in the form is " + form);
     this.submitLogin = true;
 
     if(form.valid)
@@ -52,7 +52,8 @@ export class SignupPage {
         data => {
           console.log(data);
           if(data.status == 200){
-            this.navCtrl.push(HomePage);
+            this.navCtrl.setRoot(HomePage);
+
             this.userProvider.SetLocalObject("user", this.login.emailLogin);
 
             Toast.show("Login was successful.", "short", 'bottom').subscribe(

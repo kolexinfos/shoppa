@@ -34,7 +34,7 @@ export class MyApp {
     { title: 'Trending', component: TrendingPage, icon: 'person', index:1 },
     { title: 'Search Campaigns', component: HomePage, icon: 'search', index:2 },
     //{ title: 'Messages', component: HomePage, icon: 'email', index:3 },
-    { title: 'Favorites', component: FavoritesPage, icon: 'bookmark', index:4 },
+    { title: 'My Favorites', component: FavoritesPage, icon: 'bookmark', index:4 },
   ];
 
   loggedInPages: PageObj[] = [

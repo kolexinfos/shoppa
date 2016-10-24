@@ -19,11 +19,10 @@ export class HomePage {
 
   campaigns = [];
   like:{email?:string, campaignid?:string} ={};
-  buttonDisabled:boolean;
   user:{email?: string} = {};
 
   constructor(public navCtrl: NavController, private campaignProvider: CampaignProvider, private userProvider: UserProvider) {
-    this.buttonDisabled = null;
+
     console.log( _.sum([4, 2, 8, 6]) );
     this.user.email = userProvider.GetLocalObject("user");
     this.getCampaigns();
@@ -66,12 +65,12 @@ export class HomePage {
     this.campaignProvider.LikeCampaigns(this.like).subscribe(
       data => {
         console.log(data.result);
-        this.buttonDisabled = true;
-        // Toast.show(campaign.name + " liked", "short", 'bottom').subscribe(
-        //     toast => {
-        //     console.log(toast);
-        //   }
-        // );
+
+        Toast.show(campaign.name + " liked", "short", 'bottom').subscribe(
+             toast => {
+             console.log(toast);
+           }
+        );
 
       },
       err => {
