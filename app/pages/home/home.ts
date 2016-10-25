@@ -12,7 +12,7 @@ interface campaignObject {name?:string, image?:string, description?: string, lik
 
 @Component({
   templateUrl: 'build/pages/home/home.html',
-  providers: [CampaignProvider]
+  providers: [CampaignProvider, UserProvider]
 })
 
 export class HomePage {

@@ -13,11 +13,11 @@
     </button>
 
 
-  <ion-segment [(ngModel)]="segment" (ionChange)="updateSchedule()">
-    <ion-segment-button value="all">
+  <ion-segment [(ngModel)]="userPage">
+    <ion-segment-button value="puppies">
       Likes
     </ion-segment-button>
-    <ion-segment-button value="favorites">
+    <ion-segment-button value="kittens">
       Following
     </ion-segment-button>
   </ion-segment>
@@ -28,12 +28,61 @@
       </button>
     </ion-buttons>
 
-
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  
+<div [ngSwitch]="userPage">
+
+<div  *ngSwitchCase="'puppies'">
+  
+<ion-card *ngFor="let campaign of campaigns">
+
+      <ion-item>
+      <ion-avatar item-left>
+        <img [src]="campaign.image">
+      </ion-avatar>
+      <h2>{{campaign.name}}</h2>
+      <p>{{campaign.expiring}}</p>
+    </ion-item>
+
+    <img [src]="campaign.image">
+  <ion-card-content>
+      <p>{{campaign.description}}</p>
+    </ion-card-content>
+
+</ion-card>
+</div>
+
+  <div  *ngSwitchCase="'kittens'">
+  
+<ion-card *ngFor="let campaign of campaigns">
+
+      <ion-item>
+      <ion-avatar item-left>
+        <img [src]="campaign.image">
+      </ion-avatar>
+      <h2>{{campaign.name}}</h2>
+      <p>{{campaign.expiring}}</p>
+    </ion-item>
+
+    <img [src]="campaign.image">
+  <ion-card-content>
+      <p>{{campaign.description}}</p>
+    </ion-card-content>
+
+</ion-card>
+</div>
+  
+</div>
 
 </ion-content>
+
+<style>
+  .social-cards ion-col {
+    padding: 0;
+  }
+</style>
