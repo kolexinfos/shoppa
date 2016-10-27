@@ -10,7 +10,8 @@
     <ion-searchbar primary
                    [(ngModel)]="queryText"
                    (ionInput)="updateSchedule()"
-                   placeholder="Search">
+                   placeholder="Search Campaigns"
+                   (ionCancel)="onCancel($event)">
     </ion-searchbar>
   </ion-toolbar>
 
@@ -25,6 +26,7 @@
         <img [src]="campaign.image">
       </ion-avatar>
       <h2>{{campaign.name}}</h2>
+      <p>{{campaign.type}}</p>
       <p>{{campaign.expiring}}</p>
     </ion-item>
 
@@ -34,8 +36,8 @@
       <p>{{campaign.description}}</p>
     </ion-card-content>
 
-    <ion-row>
-      <ion-col>
+    <ion-row >
+      <ion-col [hidden] = "campaign.type != 'Campaign'">
         <button primary clear small (click)="likeCampaign(campaign)">
           <ion-icon name='thumbs-up'></ion-icon>
           <div>{{campaign.likes.length}} Likes</div>
@@ -47,7 +49,7 @@
           <div>{{campaign.share.length}} Shares</div>
         </button>
       </ion-col>
-      <ion-col>
+      <ion-col [hidden] = "campaign.type != 'Campaign'">
         <button primary clear small (click)="optInToCampaign(campaign)">
           <ion-icon name='person-add'></ion-icon>
           <div>{{campaign.wantin.length}} Opt In</div>

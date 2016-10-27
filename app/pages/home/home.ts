@@ -35,6 +35,14 @@ export class HomePage {
   ionViewDidEnter(){
     console.log('Page was fully loaded');
   }
+  
+  onCancel(event){
+    console.log('Search Cancelled');
+  }
+  
+  updateSchedule(){
+    console.log('Search the datastore');
+  }
 
   getCampaigns(){
     console.log(this.user);

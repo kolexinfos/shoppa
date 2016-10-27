@@ -26,7 +26,7 @@ interface PageObj {
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = FavoritesPage;
+  rootPage: any = HomePage;
 
 
   pages : PageObj[] = [
