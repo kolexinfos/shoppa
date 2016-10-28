@@ -10,13 +10,22 @@ import { UserProvider } from '../../providers/user-provider/user-provider';
 })
 export class TrendingPage {
   campaigns = [];
+  user:{email?: string} = {};
 
   constructor(public navCtrl: NavController, private campaignProvider: CampaignProvider, private userProvider: UserProvider) {
-    campaignProvider.GetUserCampaigns(userProvider.GetLocalObject("user")).subscribe(
+    this.user.email = userProvider.GetLocalObject("user");
+    this.getCampaigns();
+  }
+
+  getCampaigns(){
+    console.log(this.user);
+
+    this.campaignProvider.GetUserCampaigns(this.user).subscribe(
         data => {
         console.log(data.result);
-        console.log(data.message);
         this.campaigns = data.result;
+
+        //_.filter(data.result, {likes: [{email: this.user.email}] });
       },
         err => {
         console.log(err);
