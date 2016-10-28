@@ -31,12 +31,9 @@ export class MyApp {
 
   pages : PageObj[] = [
     { title: 'Home', component: HomePage, icon: 'contacts' },
-    { title: 'Trending', component: TrendingPage, icon: 'person', index:1 },
-    { title: 'Search Campaigns', component: HomePage, icon: 'search', index:2 },
-    //{ title: 'Messages', component: HomePage, icon: 'email', index:3 },
-    { title: 'My Favorites', component: FavoritesPage, icon: 'bookmark', index:4 },
+    { title: 'My Favorites', component: FavoritesPage, icon: 'bookmark', index:1 },
   ];
-
+  
   loggedInPages: PageObj[] = [
     { title: 'Account', component: HomePage, icon: 'person' },
     { title: 'Logout', component: HomePage, icon: 'log-out' }
@@ -46,6 +43,7 @@ export class MyApp {
     { title: 'Signup', component: HomePage, icon: 'person-add' }
   ];
 
+  
   constructor(public platform: Platform, private userProvider: UserProvider) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

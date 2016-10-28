@@ -23,7 +23,7 @@ export class HomePage {
   query: {text?:string,email?:string} = {};
 
   constructor(public navCtrl: NavController, private campaignProvider: CampaignProvider, private userProvider: UserProvider) {
-
+    this.query.text = '';
     console.log( _.sum([4, 2, 8, 6]) );
     this.user.email = userProvider.GetLocalObject("user");
     this.getCampaigns();
@@ -43,7 +43,7 @@ export class HomePage {
   
   onBlur(event){
     console.log('The search box was clicked out of ' + event);
-    this.getCampaigns();
+   // this.getCampaigns();
   }
   
   updateSchedule(){
