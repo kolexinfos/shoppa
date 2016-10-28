@@ -28,6 +28,15 @@ export class CampaignProvider {
     return response;
   }
 
+  GetUserLikes(email){
+    console.log('Get Likes for ' + email);
+
+    var response = this.http.post(this.url + 'userCampaignLikes', email, this.options)
+    .map(res => res.json());
+
+    return response;
+  }
+
   LikeCampaigns(campaign){
 
       var response = this.http.post(this.url + 'likeCampaign',campaign, this.options)

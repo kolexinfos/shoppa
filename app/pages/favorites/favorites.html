@@ -34,11 +34,11 @@
 
 
 <ion-content padding>
-  
+
 <div [ngSwitch]="userPage">
 
 <div  *ngSwitchCase="'puppies'">
-  
+
 <ion-card *ngFor="let campaign of campaigns">
 
       <ion-item>
@@ -58,8 +58,8 @@
 </div>
 
   <div  *ngSwitchCase="'kittens'">
-  
-<ion-card *ngFor="let campaign of campaigns">
+
+<ion-card *ngFor="let campaign of following">
 
       <ion-item>
       <ion-avatar item-left>
@@ -76,7 +76,7 @@
 
 </ion-card>
 </div>
-  
+
 </div>
 
 </ion-content>
