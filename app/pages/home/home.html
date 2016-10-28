@@ -8,10 +8,11 @@
 
   <ion-toolbar no-border-top>
     <ion-searchbar primary
-                   [(ngModel)]="queryText"
+                   [(ngModel)]="query.text"
                    (ionInput)="updateSchedule()"
                    placeholder="Search Campaigns"
-                   (ionCancel)="onCancel($event)">
+                   (ionCancel)="onCancel($event)"
+                   (ionBlur)="onBlur($event)">
     </ion-searchbar>
   </ion-toolbar>
 

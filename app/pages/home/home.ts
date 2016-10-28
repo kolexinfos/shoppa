@@ -20,6 +20,7 @@ export class HomePage {
   campaigns = [];
   like:{email?:string, campaignid?:string} ={};
   user:{email?: string} = {};
+  query: {text?:string,email?:string} = {};
 
   constructor(public navCtrl: NavController, private campaignProvider: CampaignProvider, private userProvider: UserProvider) {
 
@@ -40,8 +41,25 @@ export class HomePage {
     console.log('Search Cancelled');
   }
   
+  onBlur(event){
+    console.log('The search box was clicked out of ' + event);
+    this.getCampaigns();
+  }
+  
   updateSchedule(){
-    console.log('Search the datastore');
+    console.log(this.query);
+    
+    this.query.email= this.user.email;
+    this.campaignProvider.SearchCampaigns(this.query).subscribe(
+      data => {
+        console.log(data.result);
+        this.campaigns = data.result;
+      },
+      err => {
+         console.log(err);
+      },
+      () => console.log("Search Returned")
+      )
   }
 
   getCampaigns(){

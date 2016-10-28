@@ -36,6 +36,15 @@ export class CampaignProvider {
 
     return response;
   }
+  
+   SearchCampaigns(searchObj){
+    console.log('search for ' + searchObj.text);
+
+    var response = this.http.post(this.url + 'searchCampaigns', searchObj, this.options)
+    .map(res => res.json());
+
+    return response;
+  }
 
   LikeCampaigns(campaign){
 
