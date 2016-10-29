@@ -6,14 +6,14 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar danger>
     <ion-title></ion-title>
     <button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
 
 
-  <ion-segment [(ngModel)]="userPage">
+  <ion-segment [(ngModel)]="userPage" light>
     <ion-segment-button value="puppies">
       Likes
     </ion-segment-button>
@@ -33,9 +33,9 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content [ngSwitch]="userPage">
 
-<div [ngSwitch]="userPage">
+
 
 <div  *ngSwitchCase="'puppies'">
 
@@ -75,8 +75,6 @@
     </ion-card-content>
 
 </ion-card>
-</div>
-
 </div>
 
 </ion-content>

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 
 import { CampaignProvider } from '../../providers/campaign-provider/campaign-provider';
+import { ScheduleFilterPage } from '../schedule-filter/schedule-filter';
+
 import { UserProvider } from '../../providers/user-provider/user-provider';
 
 /*
@@ -20,7 +22,11 @@ export class FavoritesPage {
   campaigns = [];
   following = [];
 
-  constructor(private navCtrl: NavController, private campaignProvider: CampaignProvider, private userProvider: UserProvider) {
+  constructor(private navCtrl: NavController,
+              private campaignProvider: CampaignProvider,
+              private userProvider: UserProvider,
+              public modalCtrl: ModalController
+  ) {
 
     this.user.email = userProvider.GetLocalObject("user");
     this.getLikeCampaigns();
@@ -42,6 +48,18 @@ export class FavoritesPage {
       },
       () => console.log('Pulling data')
     )
+  }
+
+  presentFilter() {
+    let modal = this.modalCtrl.create(ScheduleFilterPage, this.campaigns);
+    modal.present();
+
+    modal.onDidDismiss((data: any[]) => {
+      if (data) {
+
+      }
+    });
+
   }
 
   getFollowCampaigns(){
