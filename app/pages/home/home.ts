@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController  } from 'ionic-angular';
 import { Toast, SocialSharing } from 'ionic-native';
 
 import * as _ from 'lodash'
@@ -22,11 +22,32 @@ export class HomePage {
   user:{email?: string} = {};
   query: {text?:string,email?:string} = {};
 
-  constructor(public navCtrl: NavController, private campaignProvider: CampaignProvider, private userProvider: UserProvider) {
+  loadingPopup = this.loadingCtrl.create({
+  content: 'Loading data...'
+});
+
+
+
+  constructor(public navCtrl: NavController,
+              private campaignProvider: CampaignProvider,
+              private userProvider: UserProvider,
+              public loadingCtrl: LoadingController
+) {
+    // Create the popup
+
+
+    // Show the popup
+    this.loadingPopup.present();
+
     this.query.text = '';
     console.log( _.sum([4, 2, 8, 6]) );
     this.user.email = userProvider.GetLocalObject("user");
+
+    //this.navCtrl.present(this.loading);
     this.getCampaigns();
+
+
+
   }
 
   ionViewWillEnter(){
@@ -36,27 +57,31 @@ export class HomePage {
   ionViewDidEnter(){
     console.log('Page was fully loaded');
   }
-  
+
   onCancel(event){
     console.log('Search Cancelled');
   }
-  
+
   onBlur(event){
     console.log('The search box was clicked out of ' + event);
    // this.getCampaigns();
   }
-  
-  updateSchedule(){
+
+  searchCampaigns(){
     console.log(this.query);
-    
+
+    this.loadingPopup.present();
+
     this.query.email= this.user.email;
     this.campaignProvider.SearchCampaigns(this.query).subscribe(
       data => {
         console.log(data.result);
         this.campaigns = data.result;
+        this.loadingPopup.dismiss();
       },
       err => {
          console.log(err);
+        this.loadingPopup.dismiss();
       },
       () => console.log("Search Returned")
       )
@@ -69,14 +94,20 @@ export class HomePage {
         data => {
           console.log(data.result);
           this.campaigns = data.result;
+          this.loadingPopup.dismiss();
 
          //_.filter(data.result, {likes: [{email: this.user.email}] });
         },
         err => {
         console.log(err);
+          this.loadingPopup.dismiss();
       },
-      () => console.log('Pulling data')
+      () => {
+        console.log('Pulling data');
+        this.loadingPopup.dismiss();
+      }
     )
+
   }
 
   likeCampaign(campaign){

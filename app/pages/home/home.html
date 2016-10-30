@@ -9,7 +9,7 @@
   <ion-toolbar no-border-top>
     <ion-searchbar primary
                    [(ngModel)]="query.text"
-                   (ionInput)="updateSchedule()"
+                   (ionInput)="searchCampaigns()"
                    placeholder="Search Campaigns"
                    (ionCancel)="onCancel($event)"
                    (ionBlur)="onBlur($event)"
@@ -20,6 +20,7 @@
 </ion-header>
 
 <ion-content >
+
 
   <ion-card *ngFor="let campaign of campaigns">
     <ion-item>
