@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 
 import { CampaignProvider } from '../../providers/campaign-provider/campaign-provider';
 import { ScheduleFilterPage } from '../schedule-filter/schedule-filter';
@@ -21,12 +21,19 @@ export class FavoritesPage {
   user:{email?: string} = {};
   campaigns = [];
   following = [];
+  
+   loadingPopup = this.loadingCtrl.create({
+       content: 'Loading data...'
+      });
+
 
   constructor(private navCtrl: NavController,
               private campaignProvider: CampaignProvider,
               private userProvider: UserProvider,
-              public modalCtrl: ModalController
+              public loadingCtrl: LoadingController
   ) {
+    
+    this.loadingPopup.present();
 
     this.user.email = userProvider.GetLocalObject("user");
     this.getLikeCampaigns();
@@ -46,20 +53,15 @@ export class FavoritesPage {
         err => {
         console.log(err);
       },
-      () => console.log('Pulling data')
+      () => {
+        this.loadingPopup.dismiss();
+        console.log('Pulling data')
+      }
     )
   }
 
   presentFilter() {
-    let modal = this.modalCtrl.create(ScheduleFilterPage, this.campaigns);
-    modal.present();
-
-    modal.onDidDismiss((data: any[]) => {
-      if (data) {
-
-      }
-    });
-
+    
   }
 
   getFollowCampaigns(){
@@ -75,7 +77,11 @@ export class FavoritesPage {
         err => {
         console.log(err);
       },
-      () => console.log('Pulling data')
+      () => 
+      {
+        console.log('Pulling data')
+        this.loadingPopup.dismiss();
+      }
     )
   }
 
