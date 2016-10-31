@@ -11,6 +11,7 @@
                    [(ngModel)]="query.text"
                    (ionInput)="searchCampaigns()"
                    placeholder="Search Campaigns"
+                   debounce="1000"
                    (ionCancel)="onCancel($event)"
                    (ionBlur)="onBlur($event)"
                    >
