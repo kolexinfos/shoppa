@@ -8,6 +8,8 @@ import { VerifyPage } from './pages/verify/verify'
 import { FavoritesPage } from './pages/favorites/favorites';
 import { TrendingPage } from './pages/trending/trending';
 import { SearchPage } from './pages/search/search';
+import { BrandsPage } from './pages/brands/brands';
+import { SparksPage } from './pages/sparks/sparks';
 
 
 import { UserProvider } from './providers/user-provider/user-provider';
@@ -30,8 +32,10 @@ export class MyApp {
 
 
   pages : PageObj[] = [
-    { title: 'Home', component: HomePage, icon: 'contacts' },
-    { title: 'My Favorites', component: FavoritesPage, icon: 'bookmark', index:1 },
+    { title: 'Campaigns', component: HomePage, icon: 'contacts' },
+    { title: 'Brands', component: BrandsPage, icon: 'bookmark', index:1 },
+    { title: 'My Favorites', component: FavoritesPage, icon: 'bookmark', index:2 },
+    { title: 'My Sparks', component: SparksPage, icon: 'bookmark', index:3 },
   ];
   
   loggedInPages: PageObj[] = [
