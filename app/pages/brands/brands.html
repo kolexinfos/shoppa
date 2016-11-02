@@ -22,39 +22,39 @@
 <ion-content >
 
 
-  <ion-card *ngFor="let campaign of campaigns">
+  <ion-card *ngFor="let brand of brands">
     <ion-item>
       <ion-avatar item-left>
-        <img [src]="campaign.image">
+        <img [src]="brand.image">
       </ion-avatar>
-      <h2>{{campaign.name}}</h2>
-      <p>{{campaign.type}}</p>
-      <p>{{campaign.expiring}}</p>
+      <h2>{{brand.name}}</h2>
+      <p>{{brand.category}}</p>
+      <p>{{brand.tags}}</p>
     </ion-item>
 
-    <img [src]="campaign.image">
+    <img [src]="brand.image">
 
     <ion-card-content>
-      <p>{{campaign.description}}</p>
+      <p>{{brand.description}}</p>
     </ion-card-content>
 
     <ion-row >
-      <ion-col [hidden] = "campaign.type != 'Campaign'">
-        <button primary clear small (click)="likeCampaign(campaign)">
+      <ion-col >
+        <button primary clear small (click)="likeBrand(brand)">
           <ion-icon name='thumbs-up'></ion-icon>
-          <div>{{campaign.likes.length}} Likes</div>
+          <div>{{brand.likes.length}} Likes</div>
         </button>
       </ion-col>
       <ion-col>
-        <button primary clear small (click)="shareCampaign(campaign)">
+        <button primary clear small (click)="shareBrand(brand)">
           <ion-icon ios="ios-share" md="md-share"></ion-icon>
-          <div>{{campaign.share.length}} Shares</div>
+          <div>{{brand.share.length}} Shares</div>
         </button>
       </ion-col>
-      <ion-col [hidden] = "campaign.type != 'Campaign'">
-        <button primary clear small (click)="optInToCampaign(campaign)">
+      <ion-col >
+        <button primary clear small (click)="followBrand(brand)">
           <ion-icon name='person-add'></ion-icon>
-          <div>{{campaign.wantin.length}} Opt In</div>
+          <div>{{brand.follow.length}} Opt In</div>
         </button>
       </ion-col>
     </ion-row>
