@@ -18,6 +18,7 @@ export class BrandsPage {
   
   search: {text?:string,email?:string} = {};
   brands = [];
+  brandObj: {brandid?: string,email?: string} = {};
 
   constructor(private navCtrl: NavController,
   private brandProvider: BrandProvider, 
@@ -53,6 +54,31 @@ export class BrandsPage {
         loadingPopup.dismiss();
       }
     )
+  }
+  
+  likeBrand(brand){
+    console.log(brand);
+     let loadingPopup = this.loadingCtrl.create({
+      content: 'Loading data...'
+    });
+    
+    loadingPopup.present();
+    
+    this.brandObj.brandid = brand._id;
+    this.brandObj.email = this.userProvider.GetLocalObject('user');
+    
+    this.brandProvider.LikeBrand(this.brandObj).subscribe(
+      data =>{
+        console.log(data.result);
+      },
+      err => {
+        
+      },
+      () => {
+        
+      }
+      
+      )
   }
 
 }

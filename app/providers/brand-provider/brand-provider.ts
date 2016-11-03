@@ -27,6 +27,13 @@ export class BrandProvider {
       
       return response;
   }
+  
+  LikeBrand(email){
+    var response = this.http.post(this.url + 'like', email, this.options)
+    .map(res=> res.json());
+    
+    return response;
+  }
 
   
 
