@@ -1,5 +1,6 @@
 {
-  "name": "ionic2-app-base",
+  "name": "Shoppa",
   "typescript": true,
-  "v2": true
+  "v2": true,
+  "app_id": "6b601448"
 }

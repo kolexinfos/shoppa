@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ionicBootstrap, Platform, Nav } from 'ionic-angular';
-import { StatusBar, Splashscreen, Push } from 'ionic-native';
+import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { HomePage } from './pages/home/home';
 import { TutorialPage } from './pages/tutorial/tutorial'
@@ -10,6 +10,8 @@ import { TrendingPage } from './pages/trending/trending';
 import { SearchPage } from './pages/search/search';
 import { BrandsPage } from './pages/brands/brands';
 import { SparksPage } from './pages/sparks/sparks';
+
+import { CloudSettings,  Push, PushToken } from '@ionic/cloud-angular';
 
 
 import { UserProvider } from './providers/user-provider/user-provider';
@@ -48,7 +50,7 @@ export class MyApp {
   ];
 
   
-  constructor(public platform: Platform, private userProvider: UserProvider) {
+  constructor(public platform: Platform, private userProvider: UserProvider, public push: Push) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -57,30 +59,31 @@ export class MyApp {
 
 
       Splashscreen.hide();
-
-      var push = Push.init({
-        android: {
-          senderID: "126468130105"
+      const cloudSettings: CloudSettings = {
+        'core': {
+          'app_id': '6b601448',
         },
-        ios: {
-          alert: "true",
-          badge: true,
-          sound: 'false'
-        },
-        windows: {}
-      });
-
-      push.on('registration', (data) => {
-        console.log(data.registrationId);
-        alert(data.registrationId.toString());
-      });
-      push.on('notification', (data) => {
-        console.log(data);
-        alert("Hi, I am a push notification");
-      });
-      push.on('error', (e) => {
-        console.log(e.message);
-      });
+        'push': {
+          'sender_id': '126468130105',
+          'pluginConfig': {
+            'android': {
+              'iconColor': '#343434'
+            }
+          }
+        }
+      };
+      
+      this.push.register().then((t: PushToken) => {
+          return this.push.saveToken(t);
+        }).then((t: PushToken) => {
+          console.log('Token saved:', t.token);
+        });
+     
+      this.push.rx.notification()
+        .subscribe((msg) => {
+          alert(msg.title + ': ' + msg.text);
+        });
+        
     });
 
   }
